@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CarrosEditDlg" widgetVar="CarrosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCarrosTitle}">
+            <h:form id="CarrosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{carrosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCarrosLabel_numeroCarro}" for="numeroCarro" />
+                        <p:inputText id="numeroCarro" value="#{carrosController.selected.numeroCarro}" title="#{bundle.EditCarrosTitle_numeroCarro}" required="true" requiredMessage="#{bundle.EditCarrosRequiredMessage_numeroCarro}"/>
+                        <p:outputLabel value="#{bundle.EditCarrosLabel_placaCarro}" for="placaCarro" />
+                        <p:inputText id="placaCarro" value="#{carrosController.selected.placaCarro}" title="#{bundle.EditCarrosTitle_placaCarro}" required="true" requiredMessage="#{bundle.EditCarrosRequiredMessage_placaCarro}"/>
+                        <p:outputLabel value="#{bundle.EditCarrosLabel_kmIncial}" for="kmIncial" />
+                        <p:inputText id="kmIncial" value="#{carrosController.selected.kmIncial}" title="#{bundle.EditCarrosTitle_kmIncial}" required="true" requiredMessage="#{bundle.EditCarrosRequiredMessage_kmIncial}"/>
+                        <p:outputLabel value="#{bundle.EditCarrosLabel_renavam}" for="renavam" />
+                        <p:inputText id="renavam" value="#{carrosController.selected.renavam}" title="#{bundle.EditCarrosTitle_renavam}" />
+                        <p:outputLabel value="#{bundle.EditCarrosLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{carrosController.selected.modelo}" title="#{bundle.EditCarrosTitle_modelo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{carrosController.update}" value="#{bundle.Save}" update="display,:CarrosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CarrosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CarrosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
